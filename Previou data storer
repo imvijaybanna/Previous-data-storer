@@ -1,0 +1,40 @@
+
+
+import json
+import os
+
+file_name = "data.json"
+
+# Purana data load karo
+if os.path.exists(file_name):
+    with open(file_name, "r") as f:
+        data = json.load(f)
+else:
+    data = []
+# agr data dekhna ho
+
+watch = input("Just want to see data ?:")
+if "yes" in watch:
+ for k in range (len(data)):
+  print(k+1,"-",data[k])
+
+# Naya data lo
+new_value = input("Enter data: ")
+data.append(new_value)
+
+# Save karo
+with open(file_name, "w") as f:
+    json.dump(data, f)
+
+print("\nPrevious data :")
+for i in range(len(data)):
+ print(i+1,"-",data[i])
+
+confirm = input("\nDelet data? (yes/no): ")
+
+if confirm.lower() == "yes":
+    with open("data.json", "w") as f:
+        json.dump([], f)
+    print("Data successfully deleted.")
+else:
+    print("Data saved successfully.")
